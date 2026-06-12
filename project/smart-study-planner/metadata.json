@@ -1,0 +1,8 @@
+{
+  "name": "Smart Study Planner",
+  "description": "A MERN stack study planner for UET Peshawar students featuring tasks, Pomodoro timer, progress tracking, and dark mode.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
