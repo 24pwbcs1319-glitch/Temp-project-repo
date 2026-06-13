@@ -1,8 +1,15 @@
-import { Moon, Sun, LayoutDashboard, CheckSquare, Clock, LogOut } from 'lucide-react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { useTheme } from './ThemeProvider';
-import { useAuth } from './AuthProvider';
-import { cn } from '../lib/utils';
+import {
+  Moon,
+  Sun,
+  LayoutDashboard,
+  CheckSquare,
+  Clock,
+  LogOut,
+} from "lucide-react";
+import { NavLink, Outlet } from "react-router-dom";
+import { useTheme } from "./ThemeProvider";
+import { useAuth } from "./AuthProvider";
+import { cn } from "../lib/utils";
 
 /**
  * Layout component that provides the main structure of the application.
@@ -13,9 +20,9 @@ export default function Layout() {
   const { logout, user } = useAuth();
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { name: 'Tasks', path: '/tasks', icon: CheckSquare },
-    { name: 'Timer', path: '/timer', icon: Clock },
+    { name: "Dashboard", path: "/", icon: LayoutDashboard },
+    { name: "Tasks", path: "/tasks", icon: CheckSquare },
+    { name: "Timer", path: "/timer", icon: Clock },
   ];
 
   return (
@@ -23,15 +30,24 @@ export default function Layout() {
       {/* Sidebar Navigation */}
       <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col hidden md:flex shrink-0">
         <div className="p-6">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-9 h-9 bg-indigo-500 rounded-xl flex items-center justify-center text-white font-black text-lg">U</div>
+          <div className="flex items-center gap-2 mb-8">
+            <img
+              src="../../assets/logo.png"
+              alt="Logo"
+              className="w-12 h-12 rounded-xl mx-auto mb-4"
+            />
+
             <div className="flex flex-col">
-              <span className="font-bold text-white tracking-tight leading-none">FocusFlow</span>
-              <span className="text-[10px] text-slate-500 uppercase tracking-widest mt-1 font-semibold">Study Planner</span>
+              <span className="font-bold text-white tracking-tight leading-none">
+                STUDY GENIE
+              </span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest mt-1 font-semibold">
+                Study Planner
+              </span>
             </div>
           </div>
         </div>
-        
+
         <nav className="flex-1 px-4 space-y-1">
           {navItems.map((item) => (
             <NavLink
@@ -39,10 +55,10 @@ export default function Layout() {
               to={item.path}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all',
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-slate-300 hover:bg-slate-800 hover:text-white",
                 )
               }
             >
@@ -55,13 +71,19 @@ export default function Layout() {
         <div className="mt-auto p-6 border-t border-slate-800 bg-slate-950/50">
           <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-700 space-y-4">
             <div className="flex w-full justify-between items-center px-1">
-              <span className="text-sm font-bold text-slate-200 truncate">{user?.name}</span>
+              <span className="text-sm font-bold text-slate-200 truncate">
+                {user?.name}
+              </span>
               <button
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 className="p-1 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
                 title="Toggle theme"
               >
-                {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                {theme === "light" ? (
+                  <Moon className="h-4 w-4" />
+                ) : (
+                  <Sun className="h-4 w-4" />
+                )}
               </button>
             </div>
             <button
@@ -80,15 +102,23 @@ export default function Layout() {
         {/* Mobile Header */}
         <header className="md:hidden h-20 border-b border-slate-100 flex items-center justify-between px-6 shrink-0 bg-white/50 backdrop-blur-md">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-black text-sm">U</div>
-            <h1 className="text-xl font-extrabold tracking-tight text-slate-900">FocusFlow</h1>
+            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-black text-sm">
+              U
+            </div>
+            <h1 className="text-xl font-extrabold tracking-tight text-slate-900">
+              FocusFlow
+            </h1>
           </div>
           <div className="flex items-center gap-4">
             <button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors"
             >
-              {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+              {theme === "light" ? (
+                <Moon className="h-5 w-5" />
+              ) : (
+                <Sun className="h-5 w-5" />
+              )}
             </button>
           </div>
         </header>
@@ -105,10 +135,10 @@ export default function Layout() {
               to={item.path}
               className={({ isActive }) =>
                 cn(
-                  'flex-1 flex flex-col items-center justify-center gap-1 py-3 text-[10px] uppercase font-bold tracking-wider transition-colors',
+                  "flex-1 flex flex-col items-center justify-center gap-1 py-3 text-[10px] uppercase font-bold tracking-wider transition-colors",
                   isActive
-                    ? 'text-indigo-600'
-                    : 'text-slate-400 hover:text-slate-600'
+                    ? "text-indigo-600"
+                    : "text-slate-400 hover:text-slate-600",
                 )
               }
             >

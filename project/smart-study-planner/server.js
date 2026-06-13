@@ -12,7 +12,7 @@ import subjectRoutes from './server/routes/subjects.js';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 let mongoServer;
 
 // Middleware
@@ -85,8 +85,17 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
+  });
+
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+      console.error(`Port ${PORT} is already in use. Stop the other process or set PORT to another value in .env.`);
+      process.exit(1);
+    }
+
+    throw error;
   });
 }
 
