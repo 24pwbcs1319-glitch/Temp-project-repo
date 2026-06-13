@@ -13,6 +13,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 3000;
+let mongoServer;
 
 // Middleware
 app.use(cors());
@@ -23,16 +24,16 @@ app.use(express.json());
  */
 async function connectDB() {
   try {
-    let mongoUri = process.env.MONGODB_URI || 'mongodb+srv://smart_user01:smartstudyplanner@smart-study-planner.swvjusm.mongodb.net/SmartStudyPlanner?appName=Smart-Study-Planner';
+    let mongoUri = process.env.MONGODB_URI;
 
     if (mongoUri && !mongoUri.startsWith('mongodb://') && !mongoUri.startsWith('mongodb+srv://')) {
-      console.warn('Invalid MONGODB_URI format. Using explicit Atlas fallback...');
-      mongoUri = 'mongodb+srv://smart_user01:smartstudyplanner@smart-study-planner.swvjusm.mongodb.net/SmartStudyPlanner?appName=Smart-Study-Planner';
+      console.warn('Invalid MONGODB_URI format. Starting ephemeral in-memory MongoDB for demo mode...');
+      mongoUri = '';
     }
 
     if (!mongoUri) {
       console.log('No MONGODB_URI provided. Starting ephemeral in-memory MongoDB for demo mode...');
-      const mongoServer = await MongoMemoryServer.create();
+      mongoServer = await MongoMemoryServer.create();
       mongoUri = mongoServer.getUri();
       console.log(`In-memory database started at ${mongoUri}`);
     }
@@ -40,12 +41,17 @@ async function connectDB() {
     await mongoose.connect(mongoUri);
     console.log('MongoDB connected successfully');
   } catch (error) {
-    console.error('MongoDB connection error:', error);
-    process.exit(1);
+    if (!mongoServer) {
+      console.warn('MongoDB connection failed. Falling back to ephemeral in-memory MongoDB for demo mode...');
+      mongoServer = await MongoMemoryServer.create();
+      await mongoose.connect(mongoServer.getUri());
+      console.log('In-memory MongoDB connected successfully');
+      return;
+    }
+
+    throw error;
   }
 }
-
-connectDB();
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -84,4 +90,9 @@ async function startServer() {
   });
 }
 
-startServer();
+connectDB()
+  .then(startServer)
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  });
