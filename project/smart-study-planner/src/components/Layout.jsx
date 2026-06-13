@@ -34,7 +34,7 @@ export default function Layout() {
             <img
               src="../../assets/logo.png"
               alt="Logo"
-              className="w-12 h-12 rounded-xl mx-auto mb-4"
+              className="w-30 h-30 rounded-xl mx-auto mb-4"
             />
 
             <div className="flex flex-col">

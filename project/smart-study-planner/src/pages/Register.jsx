@@ -66,12 +66,12 @@ export default function Register() {
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-slate-50 px-4 font-sans text-slate-900">
-      <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
+      <div className="w-full max-w-md bg-blue-50 border border-slate-200 rounded-2xl shadow-sm p-8">
         <div className="text-center mb-8">
           <img
             src="../../assets/logo.png"
             alt="Logo"
-            className="w-12 h-12 rounded-xl mx-auto mb-4"
+            className="w-40 h-40 rounded-xl mx-auto mb-4"
           />
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
             Join STUDY GENIE
@@ -149,7 +149,7 @@ export default function Register() {
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-indigo-600 hover:text-indigo-500 transition-colors uppercase tracking-wider"
+            className="text-blue-600 hover:text-blue-500 transition-colors uppercase tracking-wider"
           >
             Sign In
           </Link>
