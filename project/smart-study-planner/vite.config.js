@@ -7,6 +7,8 @@ import { defineConfig } from 'vite';
  * Vite configuration file for React app building and bundling
  */
 export default defineConfig(() => {
+  const hmrPort = Number(process.env.HMR_PORT);
+
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
@@ -15,7 +17,7 @@ export default defineConfig(() => {
       },
     },
     server: {
-      hmr: process.env.DISABLE_HMR !== 'true',
+      hmr: process.env.DISABLE_HMR === 'true' ? false : hmrPort ? { port: hmrPort } : true,
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
