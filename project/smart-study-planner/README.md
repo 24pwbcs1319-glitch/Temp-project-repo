@@ -230,10 +230,10 @@ Pomodoro timer with 25-minute study and 5-minute break modes. Play/pause and res
 
 | Name | Role |
 |---|---|
-| Member 1 | Backend & Server Setup |
-| Member 2 | Database Models |
-| Member 3 | API Routes |
-| Member 4 | Middleware & Configuration |
+| Abdullah Abbasi | Backend & Server Setup |
+| Saad Altaf | Database Models |
+| Ahmed Bilal | API Routes |
+| Ahmad Fahim | Middleware & Configuration |
 
 > All 4 members collaborated on the React frontend together.
 
