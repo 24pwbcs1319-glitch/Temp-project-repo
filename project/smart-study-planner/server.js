@@ -9,6 +9,8 @@ import authRoutes from './server/routes/auth.js';
 import taskRoutes from './server/routes/tasks.js';
 import subjectRoutes from './server/routes/subjects.js';
 
+// Load local overrides first so deployment or developer secrets in .env.local are honored.
+dotenv.config({ path: '.env.local' });
 dotenv.config();
 
 const app = express();
