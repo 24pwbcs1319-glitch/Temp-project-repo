@@ -20,7 +20,7 @@ A full-stack MERN web application built for UET Peshawar students to manage stud
 
 ## About the Project
 
-FocusFlow is a study planner web app that helps students organize their subjects and assignments, track completion progress, and use a built-in Pomodoro timer to manage study sessions effectively. It features user authentication, dark mode support, and a responsive design that works on both desktop and mobile.
+Study Genie is a study planner web app that helps students organize their subjects and assignments, track completion progress, and use a built-in Pomodoro timer to manage study sessions effectively. It features user authentication, dark mode support, and a responsive design that works on both desktop and mobile.
 
 ---
 
